@@ -36,10 +36,10 @@ export const Boxes = ({
   refresh,
 }: IPropsBoxes) => {
   function boxClick() {
-    if (moves[id]) {
+    if (counterMove === 2) {
       return;
     }
-    if (counterMove === 2) {
+    if (moves[id]) {
       return;
     }
 
@@ -88,9 +88,13 @@ export const Boxes = ({
         boxClick();
       }}
     >
-      <div className="box closed ">
+      <div
+        className={`box ${
+          !openBoxes[value] && counterMove < 2 ? "closed" : "cursor"
+        }`}
+      >
         {moves[id] && (
-          <div className="box open">
+          <div className={`box ${!openBoxes[value] ? "open" : "cursor"}`}>
             <img
               className="img"
               src={`https://www.memozor.com/jeux/jquery/objects_diy/image${value}.jpg`}

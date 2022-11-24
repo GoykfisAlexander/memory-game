@@ -35,3 +35,6 @@
 .boxes:active > .open {
   transform: perspective(100vmin) rotateY(0deg);
 }
+.cursor {
+  cursor: not-allowed;
+}
