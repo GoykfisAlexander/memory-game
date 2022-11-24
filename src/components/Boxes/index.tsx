@@ -36,10 +36,7 @@ export const Boxes = ({
   refresh,
 }: IPropsBoxes) => {
   function boxClick() {
-    if (counterMove === 2) {
-      return;
-    }
-    if (moves[id]) {
+    if (counterMove === 2 || moves[id]) {
       return;
     }
 
@@ -61,8 +58,9 @@ export const Boxes = ({
       setValuePreviousBox(NaN);
       shown.current = false;
       if (openBoxes.every((e) => e === true)) {
-        alert("красава");
-        refresh();
+        setTimeout(() => {
+          alert("красава");
+        }, 500);
       }
       return;
     }
@@ -81,6 +79,7 @@ export const Boxes = ({
       }, 1000);
     }
   }
+
   return (
     <div
       className="boxes"

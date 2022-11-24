@@ -51,7 +51,7 @@ function App() {
       shown.current = false;
 
       setMoves(rememberMoves);
-    }, 1000);
+    }, 2500);
   };
 
   return (
