@@ -1,0 +1,37 @@
+.boxes {
+  margin: auto;
+  width: 14vmin;
+  height: 14vmin;
+}
+.box,
+.img {
+  transition: transform 0.2s linear;
+  position: relative;
+  height: 100%;
+  background-color: rgb(66, 33, 127);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 1vw rgba(0, 0, 0, 0.2);
+}
+.img {
+  position: absolute;
+}
+
+.openBoxes {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.closed {
+  transform: perspective(100vmin) rotateY(0deg);
+}
+.open {
+  transform: perspective(100vmin) rotateY(180deg);
+}
+.boxes:active > .closed {
+  transform: perspective(100vmin) rotateY(-180deg);
+}
+.boxes:active > .open {
+  transform: perspective(100vmin) rotateY(0deg);
+}
