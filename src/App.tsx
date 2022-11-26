@@ -2,17 +2,23 @@ import "./App.css";
 import { useRef, useState } from "react";
 import { Boxes } from "./components/Boxes";
 
-function App() {
-  const mixField = () => {
-    const mixField: number[] = [];
-    while (mixField.length !== 30) {
-      const randomValue = Math.floor(Math.random() * 15);
-      if (mixField.filter((e) => e === randomValue).length !== 2) {
-        mixField.push(randomValue);
-      }
+const mixField = () => {
+  const mixField = [];
+  const pushControl: { [key in string]: number } = {};
+  for (let i = 0; i < 15; i++) {
+    pushControl[i] = 0;
+  }
+  while (mixField.length !== 30) {
+    const randomValue = Math.floor(Math.random() * 15);
+    if (pushControl[randomValue] < 2) {
+      pushControl[randomValue]++;
+      mixField.push(randomValue);
     }
-    return mixField;
-  };
+  }
+  return mixField;
+};
+
+function App() {
   const [field, setField] = useState(mixField());
   const [moves, setMoves] = useState(Array(30).fill(false));
   const [idPreviousBox, setIdPreviousBox] = useState(NaN);
@@ -70,7 +76,7 @@ function App() {
             key={id}
             id={id}
             value={value}
-            openBoxes={openBoxes.current}
+            openBoxes={openBoxes}
             shown={shown}
             counterMove={counterMove}
             setCounterMove={setCounterMove}
@@ -83,7 +89,6 @@ function App() {
             setBackground={setBackground}
             setScore={setScore}
             setMistakes={setMistakes}
-            refresh={refresh}
           />
         ))}
       </div>
