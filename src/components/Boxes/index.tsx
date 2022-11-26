@@ -2,7 +2,7 @@ import "./Boxes.css";
 interface IPropsBoxes {
   value: number;
   id: number;
-  openBoxes: boolean[];
+  openBoxes: any;
   moves: boolean[];
   setMoves: any;
   counterMove: number;
@@ -15,7 +15,6 @@ interface IPropsBoxes {
   setScore: any;
   setMistakes: any;
   shown: any;
-  refresh: any;
 }
 export const Boxes = ({
   value,
@@ -33,7 +32,6 @@ export const Boxes = ({
   setMistakes,
   setScore,
   shown,
-  refresh,
 }: IPropsBoxes) => {
   function boxClick() {
     if (counterMove === 2 || moves[id]) {
@@ -51,13 +49,13 @@ export const Boxes = ({
     if (value === valuePreviousBox) {
       setBackground("green");
       setScore((p: number) => p + 1);
-      openBoxes[value] = true;
+      openBoxes.current[value] = true;
       setTimeout(() => setBackground(""), 1000);
       setCounterMove(0);
       setIdPreviousBox(NaN);
       setValuePreviousBox(NaN);
       shown.current = false;
-      if (openBoxes.every((e) => e === true)) {
+      if (openBoxes.current.every((e: boolean) => e === true)) {
         setTimeout(() => {
           alert("красава");
         }, 500);
@@ -80,6 +78,7 @@ export const Boxes = ({
     }
   }
 
+  // можно вынести бокс в отдельную компоненту
   return (
     <div
       className="boxes"
@@ -89,17 +88,19 @@ export const Boxes = ({
     >
       <div
         className={`box ${
-          !openBoxes[value] && counterMove < 2 ? "closed" : "cursor"
+          !openBoxes.current[value] && counterMove < 2 ? "closed" : "cursor"
         }`}
       >
         {moves[id] && (
-          <div className={`box ${!openBoxes[value] ? "open" : "cursor"}`}>
+          <div
+            className={`box ${!openBoxes.current[value] ? "open" : "cursor"}`}
+          >
             <img
               className="img"
               src={`https://www.memozor.com/jeux/jquery/objects_diy/image${value}.jpg`}
               alt=""
             />
-            {openBoxes[value] && <div className="box openBoxes "></div>}
+            {openBoxes.current[value] && <div className="box openBoxes "></div>}
           </div>
         )}
       </div>
