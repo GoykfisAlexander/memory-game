@@ -2,19 +2,19 @@ import "./Boxes.css";
 interface IPropsBoxes {
   value: number;
   id: number;
-  openBoxes: { current: boolean[] };
+  openBoxes: React.MutableRefObject<boolean[]>;
   moves: boolean[];
-  setMoves: (value: boolean[]) => void;
+  setMoves: React.Dispatch<React.SetStateAction<boolean[]>>;
   counterMove: number;
-  setCounterMove: (value: number) => void;
+  setCounterMove: React.Dispatch<React.SetStateAction<number>>;
   idPreviousBox: number;
-  setIdPreviousBox: (value: number) => void;
+  setIdPreviousBox: React.Dispatch<React.SetStateAction<number>>;
   valuePreviousBox: number;
-  setValuePreviousBox: (value: number) => void;
-  setBackground: (value: string) => void;
-  setScore: (value: number | ((p: number) => number)) => void;
-  setMistakes: (value: number | ((p: number) => number)) => void;
-  shown: { current: boolean };
+  setValuePreviousBox: React.Dispatch<React.SetStateAction<number>>;
+  setBackground: React.Dispatch<React.SetStateAction<string>>;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  setMistakes: React.Dispatch<React.SetStateAction<number>>;
+  shown: React.MutableRefObject<boolean>;
 }
 export const Boxes = ({
   value,
