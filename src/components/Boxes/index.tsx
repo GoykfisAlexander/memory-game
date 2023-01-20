@@ -2,19 +2,19 @@ import "./Boxes.css";
 interface IPropsBoxes {
   value: number;
   id: number;
-  openBoxes: any;
+  openBoxes: { current: boolean[] };
   moves: boolean[];
-  setMoves: any;
+  setMoves: (value: boolean[]) => void;
   counterMove: number;
-  setCounterMove: any;
+  setCounterMove: (value: number) => void;
   idPreviousBox: number;
-  setIdPreviousBox: any;
+  setIdPreviousBox: (value: number) => void;
   valuePreviousBox: number;
-  setValuePreviousBox: any;
-  setBackground: any;
-  setScore: any;
-  setMistakes: any;
-  shown: any;
+  setValuePreviousBox: (value: number) => void;
+  setBackground: (value: string) => void;
+  setScore: (value: number | ((p: number) => number)) => void;
+  setMistakes: (value: number | ((p: number) => number)) => void;
+  shown: { current: boolean };
 }
 export const Boxes = ({
   value,
@@ -78,7 +78,6 @@ export const Boxes = ({
     }
   }
 
-  // можно вынести бокс в отдельную компоненту
   return (
     <div
       className="boxes"
